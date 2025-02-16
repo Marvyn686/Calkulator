@@ -5,7 +5,7 @@ const input2: HTMLElement | null = document.getElementById('input2');
 
 const summitButton: HTMLElement | null = document.getElementById('submit');
 
-const plusButton: HTMLElement | null  = document.getElementById('plus');
+const plusButton: HTMLElement | null = document.getElementById('plus');
 const minusButton: HTMLElement | null = document.getElementById('minus');
 const multiplyButton: HTMLElement | null = document.getElementById('multiplication');
 const divisionButton: HTMLElement | null = document.getElementById('division');
@@ -27,8 +27,9 @@ multiplyButton.onclick = function (): void {
 divisionButton.onclick = function (): void {
     action = '/'
 }
+
 //полученного результат. если меньше 0 то красная цифра, иначе зеленая
-function printResult(result :any): void {
+function printResult(result: any): void {
     if (result < 0) {
         resultElement.style.color = 'red';
     } else {
@@ -37,7 +38,7 @@ function printResult(result :any): void {
     resultElement.textContent = result;
 }
 
-function computrNumbersWitAction(inp1: any, inp2: any, actionSymbol: any):number|undefined {
+function computrNumbersWitAction(inp1: any, inp2: any, actionSymbol: any): number | undefined {
     const num1: number = Number(inp1.value);
     const num2: number = Number(inp2.value);
     if (actionSymbol === '+') {
@@ -54,7 +55,7 @@ function computrNumbersWitAction(inp1: any, inp2: any, actionSymbol: any):number
     }
 }
 
-summitButton.onclick = function ():void {
-    const result: number|undefined = computrNumbersWitAction(input1, input2, action);
+summitButton.onclick = function (): void {
+    const result: number | undefined = computrNumbersWitAction(input1, input2, action);
     printResult(result);
 }

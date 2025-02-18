@@ -1,20 +1,20 @@
-const resultElement: HTMLElement | null = document.getElementById('result');
+//получаем ссылки переменнхе из HTML
 
-const input1: HTMLElement | null = document.getElementById('input1');
-const input2: HTMLElement | null = document.getElementById('input2');
+const resultElement: HTMLElement = document.getElementById('result') as HTMLElement;//подтверждения конкретного типа(либо можно сделать проверку на null)
 
-const summitButton: HTMLElement | null = document.getElementById('submit');
+const input1: HTMLInputElement | null = document.getElementById('input1') as HTMLInputElement;//подтверждения конкретного типа
+const input2: HTMLInputElement | null = document.getElementById('input2') as HTMLInputElement;//подтверждения конкретного типа
 
-const plusButton: HTMLElement | null = document.getElementById('plus');
-const minusButton: HTMLElement | null = document.getElementById('minus');
-const multiplyButton: HTMLElement | null = document.getElementById('multiplication');
-const divisionButton: HTMLElement | null = document.getElementById('division');
+const summitButton: HTMLElement = document.getElementById('submit')as HTMLElement;//подтверждения конкретного типа
 
+const plusButton: HTMLElement | null = document.getElementById('plus') as HTMLElement;
+const minusButton: HTMLElement | null = document.getElementById('minus') as HTMLElement;
+const multiplyButton: HTMLElement | null = document.getElementById('multiplication') as HTMLElement;
+const divisionButton: HTMLElement | null = document.getElementById('division') as HTMLElement;
+//задаем переменную для хранения текущей операции
 let action: string = '+'
 
-const sum: number = input1 + input2;
-console.log(sum);
-
+//кнопки операций
 plusButton.onclick = function (): void {
     action = '+'
 }
@@ -29,16 +29,16 @@ divisionButton.onclick = function (): void {
 }
 
 //полученного результат. если меньше 0 то красная цифра, иначе зеленая
-function printResult(result: any): void {
+function printResult(result: number): void {
     if (result < 0) {
         resultElement.style.color = 'red';
     } else {
         resultElement.style.color = 'green';
     }
-    resultElement.textContent = result;
+    resultElement.textContent = result.toString();//преобразует строку в число
 }
-
-function computrNumbersWitAction(inp1: any, inp2: any, actionSymbol: any): number | undefined {
+//Функция для вычисления результат
+function computrNumbersWitAction(inp1: HTMLInputElement, inp2: HTMLInputElement, actionSymbol: string): number | undefined {
     const num1: number = Number(inp1.value);
     const num2: number = Number(inp2.value);
     if (actionSymbol === '+') {
@@ -54,8 +54,11 @@ function computrNumbersWitAction(inp1: any, inp2: any, actionSymbol: any): numbe
         return num1 / num2;
     }
 }
-
+//кнопка вычислить
 summitButton.onclick = function (): void {
-    const result: number | undefined = computrNumbersWitAction(input1, input2, action);
-    printResult(result);
+    const result: number | undefined  =  computrNumbersWitAction(input1, input2, action);
+        if (result !== undefined) { //делаем проверку, что resilt не равно undefined, а равна number
+            printResult(result);
+        }
+
 }

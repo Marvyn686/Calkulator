@@ -1,14 +1,15 @@
-var resultElement = document.getElementById('result');
-var input1 = document.getElementById('input1');
-var input2 = document.getElementById('input2');
-var summitButton = document.getElementById('submit');
+//получаем ссылки переменнхе из HTML
+var resultElement = document.getElementById('result'); //подтверждения конкретного типа(либо можно сделать проверку на null)
+var input1 = document.getElementById('input1'); //подтверждения конкретного типа
+var input2 = document.getElementById('input2'); //подтверждения конкретного типа
+var summitButton = document.getElementById('submit'); //подтверждения конкретного типа
 var plusButton = document.getElementById('plus');
 var minusButton = document.getElementById('minus');
 var multiplyButton = document.getElementById('multiplication');
 var divisionButton = document.getElementById('division');
+//задаем переменную для хранения текущей операции
 var action = '+';
-var sum = input1 + input2;
-console.log(sum);
+//кнопки операций
 plusButton.onclick = function () {
     action = '+';
 };
@@ -29,8 +30,9 @@ function printResult(result) {
     else {
         resultElement.style.color = 'green';
     }
-    resultElement.textContent = result;
+    resultElement.textContent = result.toString(); //преобразует строку в число
 }
+//Функция для вычисления результат
 function computrNumbersWitAction(inp1, inp2, actionSymbol) {
     var num1 = Number(inp1.value);
     var num2 = Number(inp2.value);
@@ -47,7 +49,10 @@ function computrNumbersWitAction(inp1, inp2, actionSymbol) {
         return num1 / num2;
     }
 }
+//кнопка вычислить
 summitButton.onclick = function () {
     var result = computrNumbersWitAction(input1, input2, action);
-    printResult(result);
+    if (result !== undefined) { //делаем проверку, что resilt не равно undefined, а равна number
+        printResult(result);
+    }
 };

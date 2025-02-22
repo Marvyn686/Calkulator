@@ -1,8 +1,8 @@
 //получаем ссылки переменнхе из HTML
 
-const resultElement: HTMLElement = document.getElementById('result') as HTMLElement;//подтверждения конкретного типа(либо можно сделать проверку на null)
+const resultElement: HTMLElement  = document.getElementById('result') as HTMLElement;//подтверждения конкретного типа(либо можно сделать проверку на null)
 
-const input1: HTMLInputElement | null = document.getElementById('input1') as HTMLInputElement;//подтверждения конкретного типа
+const input1: HTMLInputElement | null = document.getElementById('input1') as HTMLInputElement;//подтверждения конкретного типа. HTMLInputElement применяется только для элементов input
 const input2: HTMLInputElement | null = document.getElementById('input2') as HTMLInputElement;//подтверждения конкретного типа
 
 const summitButton: HTMLElement = document.getElementById('submit')as HTMLElement;//подтверждения конкретного типа
@@ -28,7 +28,8 @@ divisionButton.onclick = function (): void {
     action = '/'
 }
 
-//полученного результат. если меньше 0 то красная цифра, иначе зеленая
+//Проверка полученного результат. Если меньше 0, то красная цифра, иначе зеленая
+//
 function printResult(result: number): void {
     if (result < 0) {
         resultElement.style.color = 'red';
@@ -57,7 +58,7 @@ function computrNumbersWitAction(inp1: HTMLInputElement, inp2: HTMLInputElement,
 //кнопка вычислить
 summitButton.onclick = function (): void {
     const result: number | undefined  =  computrNumbersWitAction(input1, input2, action);
-        if (result !== undefined) { //делаем проверку, что resilt не равно undefined, а равна number
+        if (result !== undefined) { //делаем проверку, что result не равно undefined, а равна number
             printResult(result);
         }
 
